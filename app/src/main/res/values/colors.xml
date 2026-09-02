@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="lockit_black">#0E0E0E</color>
+    <color name="lockit_dark_grey">#2A2A2A</color>
+    <color name="lockit_grey">#8A8A8A</color>
+    <color name="lockit_light_grey">#E3E3E3</color>
+    <color name="lockit_white">#FFFFFF</color>
+    <color name="lockit_red">#E63946</color>
+    <color name="lockit_red_dark">#B22C36</color>
+    <color name="lockit_green">#2ECC71</color>
+    <color name="lockit_green_dark">#219150</color>
+</resources>

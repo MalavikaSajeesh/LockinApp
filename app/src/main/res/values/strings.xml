@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lock In</string>
+    <string name="accessibility_service_description">Lock In uses this to detect when you open an app you\'ve chosen to restrict, so it can show your task checklist before letting you in.</string>
+</resources>
