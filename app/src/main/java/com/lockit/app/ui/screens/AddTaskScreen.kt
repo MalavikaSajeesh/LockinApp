@@ -63,9 +63,15 @@ fun AddTaskScreen(viewModel: TodoViewModel, editTaskId: Long?, onDone: () -> Uni
     var showDatePicker by remember { mutableStateOf(false) }
     var showTimePicker by remember { mutableStateOf(false) }
 
+    val todayMillis = remember {
+        LocalDate.now().atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli()
+    }
     val datePickerState = rememberDatePickerState(
-        initialSelectedDateMillis = LocalDate.now()
-            .atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli()
+        initialSelectedDateMillis = todayMillis,
+        selectableDates = object : androidx.compose.material3.SelectableDates {
+            override fun isSelectableDate(utcTimeMillis: Long): Boolean =
+                utcTimeMillis >= todayMillis
+        }
     )
     val timePickerState = rememberTimePickerState(initialHour = 9, initialMinute = 0)
 
@@ -422,15 +428,7 @@ fun AddTaskScreen(viewModel: TodoViewModel, editTaskId: Long?, onDone: () -> Uni
                 TextButton(onClick = { showDatePicker = false }) { Text("Cancel") }
             }
         ) {
-            DatePicker(
-                state = datePickerState,
-                // Don't allow dates in the past (today is the earliest)
-                dateValidator = { millis ->
-                    val picked = Instant.ofEpochMilli(millis)
-                        .atZone(ZoneOffset.UTC).toLocalDate()
-                    !picked.isBefore(LocalDate.now())
-                }
-            )
+            DatePicker(state = datePickerState)
         }
     }
 
